@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block title %}@{{ profile_user.username }} · DJA02 Social{% endblock %}
+{% block content %}
+<section class="hero"><div><h1>@{{ profile_user.username }}</h1><p>{{ profile_user.posts.count }} post{{ profile_user.posts.count|pluralize }}</p></div></section>
+<form method="get" class="filters"><input type="search" name="search" value="{{ search }}" placeholder="Search this user's posts..."><select name="sort"><option value="latest" {% if sort == 'latest' %}selected{% endif %}>Latest first</option><option value="oldest" {% if sort == 'oldest' %}selected{% endif %}>Oldest first</option></select><select name="media"><option value="">All media</option><option value="text" {% if media == 'text' %}selected{% endif %}>Text only</option><option value="image" {% if media == 'image' %}selected{% endif %}>Images</option></select><button class="btn">Apply</button></form>
+<section class="feed">{% for post in posts %}<article class="card"><div class="post-head"><span>{{ post.created_at|date:'M d, Y · H:i' }}</span>{% if user == post.author %}<span><a href="{% url 'post_edit' post.id %}">Edit</a> · <a class="danger" href="{% url 'post_delete' post.id %}">Delete</a></span>{% endif %}</div>{% if post.content %}<p>{{ post.content|linebreaksbr }}</p>{% endif %}{% if post.image %}<img class="post-image" src="{{ post.image.url }}" alt="Post image">{% endif %}</article>{% empty %}<div class="empty">No matching posts.</div>{% endfor %}</section>
+{% endblock %}
