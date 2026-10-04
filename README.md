@@ -1,5 +1,5 @@
-<<<<<<< HEAD
-#\ Advanced Social Media Application
+
+### Advanced Social Media Application
 
 A Django-based social media application implementing the **DJA0 & DJA02 Advanced Social Media Application BRD**. The project extends a basic social media app with post filtering, sorting, user filtering, keyword search, image uploads, authentication, and ownership-based post management.
 
